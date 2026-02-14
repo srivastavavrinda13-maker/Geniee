@@ -1,66 +1,134 @@
+/* ===== Page Reset ===== */
 body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #020617, #0f172a, #1e3a8a);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+
+    /* Dark blue galaxy gradient */
+    background: radial-gradient(circle at 30% 30%,
+        #163a7a,
+        #020617 80%);
 }
 
+/* ===== Star Galaxy Layer ===== */
+body::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#8ab4ff 1px, transparent 1px),
+        radial-gradient(white 2px, transparent 2px);
+
+    background-size: 80px 80px, 120px 120px, 200px 200px;
+    background-position: 0 0, 40px 60px, 100px 100px;
+
+    opacity: 0.25;
+    animation: twinkle 8s infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+    from {opacity: 0.15;}
+    to {opacity: 0.4;}
+}
+
+/* ===== Main Container ===== */
 .container {
-  text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* ORB */
+/* ===== Genie Orb ===== */
 .orb {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin: auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
 
-  background: radial-gradient(circle at 30% 30%,
-              #60a5fa,
-              #1e3a8a,
-              #020617);
+    background: radial-gradient(circle at 30% 30%,
+        #9fdfff,
+        #2563eb 60%,
+        #020617);
 
-  box-shadow: 0 0 40px #3b82f6,
-              0 0 80px #2563eb,
-              0 0 120px #1d4ed8;
+    box-shadow:
+        0 0 40px #3b82f6,
+        0 0 80px #2563eb,
+        inset -10px -10px 30px rgba(0,0,0,0.5);
 
-  animation: pulse 3s infinite ease-in-out;
+    position: relative;
+    margin-bottom: 20px;
 }
 
-/* Pulse animation */
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.15);
-  }
-
-  100% {
-    transform: scale(1);
-  }
+/* ===== Eyes ===== */
+.eye {
+    width: 14px;
+    height: 14px;
+    background: #001b44;
+    border-radius: 50%;
+    position: absolute;
+    top: 40%;
+    animation: blink 4s infinite;
 }
 
+.eye.left {
+    left: 50px;
+}
+
+.eye.right {
+    right: 50px;
+}
+
+/* Blink Animation */
+@keyframes blink {
+    0%, 92%, 100% { height: 14px; }
+    95% { height: 2px; }
+}
+
+/* ===== Mouth ===== */
+.mouth {
+    width: 40px;
+    height: 20px;
+    border-bottom: 3px solid #001b44;
+    border-radius: 0 0 40px 40px;
+    position: absolute;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* ===== Title Text ===== */
 h1 {
-  margin-top: 20px;
-  font-size: 40px;
+    font-size: 42px;
+    margin: 10px 0 5px;
 }
 
 p {
-  opacity: 0.8;
+    opacity: 0.85;
+    margin-bottom: 25px;
 }
 
+/* ===== Button ===== */
 button {
-  margin-top: 20px;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
+    background: white;
+    color: #0a0f2c;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #dbeafe;
 }
