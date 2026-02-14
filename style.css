@@ -1,4 +1,4 @@
-/* ===== Page Reset ===== */
+/* ===== Page Setup ===== */
 body {
     margin: 0;
     padding: 0;
@@ -8,38 +8,39 @@ body {
     color: white;
     text-align: center;
 
-    /* Dark blue galaxy gradient */
-    background: radial-gradient(circle at 30% 30%,
-        #163a7a,
+    /* Deep galaxy gradient */
+    background: radial-gradient(circle at center,
+        #1e3a8a,
         #020617 80%);
 }
 
-/* ===== Star Galaxy Layer ===== */
-body::after {
+/* ===== Galaxy Star Field ===== */
+body::before {
     content: "";
     position: fixed;
     width: 100%;
     height: 100%;
 
-    background-image:
-        radial-gradient(white 1px, transparent 1px),
-        radial-gradient(#8ab4ff 1px, transparent 1px),
-        radial-gradient(white 2px, transparent 2px);
+    background:
+        radial-gradient(2px 2px at 10% 20%, white, transparent),
+        radial-gradient(2px 2px at 40% 70%, white, transparent),
+        radial-gradient(2px 2px at 80% 40%, #9ec5ff, transparent),
+        radial-gradient(2px 2px at 60% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 80%, white, transparent),
+        radial-gradient(2px 2px at 25% 90%, #9ec5ff, transparent),
+        radial-gradient(2px 2px at 75% 25%, white, transparent),
+        radial-gradient(2px 2px at 55% 55%, white, transparent);
 
-    background-size: 80px 80px, 120px 120px, 200px 200px;
-    background-position: 0 0, 40px 60px, 100px 100px;
-
-    opacity: 0.25;
-    animation: twinkle 8s infinite alternate;
+    animation: twinkle 3s infinite alternate;
     pointer-events: none;
 }
 
 @keyframes twinkle {
-    from {opacity: 0.15;}
-    to {opacity: 0.4;}
+    from {opacity: 0.5;}
+    to {opacity: 1;}
 }
 
-/* ===== Main Container ===== */
+/* ===== Center Content ===== */
 .container {
     height: 100vh;
     display: flex;
@@ -68,29 +69,89 @@ body::after {
     margin-bottom: 20px;
 }
 
-/* ===== Eyes ===== */
+/* ===== Cute Cat Eyes ===== */
 .eye {
-    width: 14px;
-    height: 14px;
-    background: #001b44;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at 35% 35%,
+        white 15%,
+        #001b44 25%,
+        #001b44 85%);
     border-radius: 50%;
     position: absolute;
-    top: 40%;
+    top: 36%;
     animation: blink 4s infinite;
 }
 
-.eye.left {
-    left: 50px;
+.eye.left { left: 35px; }
+.eye.right { right: 35px; }
+
+/* Eye shine */
+.eye::before {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: white;
+    border-radius: 50%;
+    top: 5px;
+    left: 6px;
+    opacity: 0.9;
 }
 
-.eye.right {
-    right: 50px;
+.eye::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    top: 14px;
+    left: 12px;
+    opacity: 0.7;
 }
 
-/* Blink Animation */
+/* ===== Cute Eyelashes ===== */
+.eye span {
+    position: absolute;
+    width: 12px;
+    height: 2px;
+    background: #001b44;
+    top: -6px;
+}
+
+.eye.left span:nth-child(1) {
+    left: -4px;
+    transform: rotate(-30deg);
+}
+
+.eye.left span:nth-child(2) {
+    left: 8px;
+}
+
+.eye.left span:nth-child(3) {
+    left: 20px;
+    transform: rotate(30deg);
+}
+
+.eye.right span:nth-child(1) {
+    right: -4px;
+    transform: rotate(30deg);
+}
+
+.eye.right span:nth-child(2) {
+    right: 8px;
+}
+
+.eye.right span:nth-child(3) {
+    right: 20px;
+    transform: rotate(-30deg);
+}
+
+/* ===== Blink Animation ===== */
 @keyframes blink {
-    0%, 92%, 100% { height: 14px; }
-    95% { height: 2px; }
+    0%, 92%, 100% { height: 30px; }
+    95% { height: 3px; }
 }
 
 /* ===== Mouth ===== */
@@ -105,7 +166,7 @@ body::after {
     transform: translateX(-50%);
 }
 
-/* ===== Title Text ===== */
+/* ===== Text ===== */
 h1 {
     font-size: 42px;
     margin: 10px 0 5px;
