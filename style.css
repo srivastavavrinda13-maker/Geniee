@@ -12,24 +12,15 @@ body {
     color: white;
     text-align: center;
 
-    /* ===== NEBULA BACKGROUND ===== */
+    /* ===== GALAXY NEBULA ===== */
     background:
-        radial-gradient(circle at 15% 20%, rgba(99,102,241,0.6), transparent 40%),
-        radial-gradient(circle at 85% 25%, rgba(147,51,234,0.5), transparent 40%),
-        radial-gradient(circle at 40% 80%, rgba(59,130,246,0.6), transparent 45%),
-        radial-gradient(circle at 70% 70%, rgba(168,85,247,0.5), transparent 50%),
-        linear-gradient(to bottom, #020617, #000000);
-
-    animation: nebulaMove 40s infinite alternate;
+        radial-gradient(circle at 20% 30%, rgba(59,130,246,0.6), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(147,51,234,0.6), transparent 40%),
+        radial-gradient(circle at 40% 80%, rgba(99,102,241,0.6), transparent 45%),
+        radial-gradient(circle at center, #020617, #000814);
 }
 
-/* Nebula slow movement */
-@keyframes nebulaMove {
-    from { background-position: 0% 0%; }
-    to { background-position: 100% 100%; }
-}
-
-/* ===== SMALL MOVING STARS ===== */
+/* ===== SMALL GLITTER STARS ===== */
 body::before {
     content: "";
     position: fixed;
@@ -39,17 +30,19 @@ body::before {
     z-index: -2;
 
     background:
-        radial-gradient(1.5px 1.5px at 20% 30%, white, transparent),
-        radial-gradient(1.5px 1.5px at 50% 60%, white, transparent),
-        radial-gradient(1.5px 1.5px at 70% 20%, white, transparent),
+        radial-gradient(1.5px 1.5px at 10% 20%, white, transparent),
+        radial-gradient(1.5px 1.5px at 20% 80%, white, transparent),
+        radial-gradient(1.5px 1.5px at 40% 60%, white, transparent),
+        radial-gradient(1.5px 1.5px at 60% 30%, white, transparent),
+        radial-gradient(1.5px 1.5px at 80% 40%, white, transparent),
         radial-gradient(1.5px 1.5px at 90% 70%, white, transparent),
-        radial-gradient(1.5px 1.5px at 30% 80%, white, transparent),
-        radial-gradient(1.5px 1.5px at 80% 40%, white, transparent);
+        radial-gradient(1.5px 1.5px at 30% 40%, white, transparent),
+        radial-gradient(1.5px 1.5px at 70% 20%, white, transparent);
 
     animation: moveStars 120s linear infinite;
 }
 
-/* ===== BIG TWINKLING STARS ===== */
+/* ===== EXTRA BIG SHINY STARS ===== */
 body::after {
     content: "";
     position: fixed;
@@ -59,26 +52,33 @@ body::after {
     z-index: -1;
 
     background:
-        radial-gradient(3px 3px at 25% 25%, white, transparent),
-        radial-gradient(4px 4px at 75% 40%, white, transparent),
-        radial-gradient(3px 3px at 60% 70%, white, transparent),
-        radial-gradient(4px 4px at 40% 50%, white, transparent),
-        radial-gradient(3px 3px at 85% 85%, white, transparent);
+        radial-gradient(circle, white 6px, transparent 10px) 15% 20%,
+        radial-gradient(circle, white 7px, transparent 12px) 70% 25%,
+        radial-gradient(circle, white 6px, transparent 10px) 40% 50%,
+        radial-gradient(circle, white 8px, transparent 14px) 85% 70%,
+        radial-gradient(circle, white 7px, transparent 12px) 60% 85%,
+        radial-gradient(circle, white 6px, transparent 10px) 30% 75%,
+        radial-gradient(circle, white 7px, transparent 12px) 50% 20%,
+        radial-gradient(circle, white 8px, transparent 14px) 90% 45%;
 
-    animation: starTwinkle 3s infinite alternate;
+    background-repeat: no-repeat;
+
+    animation: starTwinkle 2s infinite alternate;
 }
 
+/* ===== STAR MOVEMENT ===== */
 @keyframes moveStars {
     from { transform: translate(0,0); }
     to { transform: translate(-600px,-600px); }
 }
 
+/* ===== STAR SHINE ===== */
 @keyframes starTwinkle {
-    from { opacity: 0.4; }
+    from { opacity: 0.6; }
     to { opacity: 1; }
 }
 
-/* ================= PAGE CONTENT ================= */
+/* ================= CENTER CONTENT ================= */
 .container {
     display: flex;
     flex-direction: column;
@@ -87,7 +87,7 @@ body::after {
     height: 100vh;
 }
 
-/* ================= ORB ================= */
+/* ================= GENIE ORB ================= */
 .orb {
     position: relative;
     width: 220px;
@@ -98,13 +98,13 @@ body::after {
         radial-gradient(circle at 30% 30%, #93c5fd, #2563eb 60%, #1e3a8a);
 
     box-shadow:
-        0 0 40px rgba(59,130,246,0.8),
-        0 0 80px rgba(59,130,246,0.5);
+        0 0 40px rgba(59,130,246,0.9),
+        0 0 90px rgba(59,130,246,0.6);
 
     animation: floatOrb 4s ease-in-out infinite;
 }
 
-/* Floating animation */
+/* Floating orb */
 @keyframes floatOrb {
     0%,100% { transform: translateY(0); }
     50% { transform: translateY(-12px); }
@@ -134,14 +134,14 @@ body::after {
     height: 100%;
 }
 
-/* ===== EYES ===== */
+/* ===== BIG CAT EYES ===== */
 .eye {
     position: absolute;
     width: 42px;
     height: 42px;
     background: white;
     border-radius: 50%;
-    top: 75px;
+    top: 80px;
 }
 
 .left-eye { left: 55px; }
