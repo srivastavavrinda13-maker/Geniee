@@ -1,78 +1,116 @@
-/* ================= PAGE SETUP ================= */
-body {
+/* ================= RESET ================= */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     height: 100vh;
     overflow: hidden;
     font-family: Arial, sans-serif;
     color: white;
     text-align: center;
 
-    /* Galaxy background */
+    /* ===== NEBULA BACKGROUND ===== */
     background:
-        radial-gradient(circle at 20% 30%, rgba(59,130,246,0.5), transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(147,51,234,0.4), transparent 40%),
-        radial-gradient(circle at center, #020617, #000814);
+        radial-gradient(circle at 15% 20%, rgba(99,102,241,0.6), transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(147,51,234,0.5), transparent 40%),
+        radial-gradient(circle at 40% 80%, rgba(59,130,246,0.6), transparent 45%),
+        radial-gradient(circle at 70% 70%, rgba(168,85,247,0.5), transparent 50%),
+        linear-gradient(to bottom, #020617, #000000);
+
+    animation: nebulaMove 40s infinite alternate;
 }
 
-/* ================= MOVING STARS ================= */
+/* Nebula slow movement */
+@keyframes nebulaMove {
+    from { background-position: 0% 0%; }
+    to { background-position: 100% 100%; }
+}
+
+/* ===== SMALL MOVING STARS ===== */
 body::before {
     content: "";
     position: fixed;
     width: 200%;
     height: 200%;
-
-    background:
-        radial-gradient(2px 2px at 10% 20%, white, transparent),
-        radial-gradient(3px 3px at 40% 70%, white, transparent),
-        radial-gradient(2px 2px at 80% 40%, #9ec5ff, transparent),
-        radial-gradient(3px 3px at 60% 10%, white, transparent),
-        radial-gradient(2px 2px at 90% 80%, white, transparent),
-        radial-gradient(3px 3px at 25% 90%, #9ec5ff, transparent),
-        radial-gradient(2px 2px at 75% 25%, white, transparent),
-        radial-gradient(3px 3px at 55% 55%, white, transparent);
-
-    animation: moveStars 80s linear infinite;
     pointer-events: none;
     z-index: -2;
+
+    background:
+        radial-gradient(1.5px 1.5px at 20% 30%, white, transparent),
+        radial-gradient(1.5px 1.5px at 50% 60%, white, transparent),
+        radial-gradient(1.5px 1.5px at 70% 20%, white, transparent),
+        radial-gradient(1.5px 1.5px at 90% 70%, white, transparent),
+        radial-gradient(1.5px 1.5px at 30% 80%, white, transparent),
+        radial-gradient(1.5px 1.5px at 80% 40%, white, transparent);
+
+    animation: moveStars 120s linear infinite;
 }
 
-/* Star movement */
+/* ===== BIG TWINKLING STARS ===== */
+body::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+
+    background:
+        radial-gradient(3px 3px at 25% 25%, white, transparent),
+        radial-gradient(4px 4px at 75% 40%, white, transparent),
+        radial-gradient(3px 3px at 60% 70%, white, transparent),
+        radial-gradient(4px 4px at 40% 50%, white, transparent),
+        radial-gradient(3px 3px at 85% 85%, white, transparent);
+
+    animation: starTwinkle 3s infinite alternate;
+}
+
 @keyframes moveStars {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-600px, -600px); }
+    from { transform: translate(0,0); }
+    to { transform: translate(-600px,-600px); }
 }
 
-/* ================= CENTER CONTENT ================= */
+@keyframes starTwinkle {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* ================= PAGE CONTENT ================= */
 .container {
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-/* ================= GENIE ORB ================= */
+/* ================= ORB ================= */
 .orb {
-    width: 180px;
-    height: 180px;
+    position: relative;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
 
-    background: radial-gradient(circle at 30% 30%,
-        #9fdfff,
-        #2563eb 60%,
-        #020617);
+    background:
+        radial-gradient(circle at 30% 30%, #93c5fd, #2563eb 60%, #1e3a8a);
 
     box-shadow:
-        0 0 40px #3b82f6,
-        0 0 80px #2563eb,
-        inset -10px -10px 30px rgba(0,0,0,0.5);
+        0 0 40px rgba(59,130,246,0.8),
+        0 0 80px rgba(59,130,246,0.5);
 
-    position: relative;
-    margin-bottom: 20px;
+    animation: floatOrb 4s ease-in-out infinite;
 }
 
-/* Orb glow affecting background */
+/* Floating animation */
+@keyframes floatOrb {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* Orb glow */
 .orb::before {
     content: "";
     position: absolute;
@@ -89,121 +127,111 @@ body::before {
     z-index: -1;
 }
 
-/* ================= CUTE CAT EYES ================= */
-.eye {
-    width: 30px;
-    height: 30px;
-    background: radial-gradient(circle at 35% 35%,
-        white 15%,
-        #001b44 25%,
-        #001b44 85%);
-    border-radius: 50%;
+/* ================= FACE ================= */
+.face {
     position: absolute;
-    top: 36%;
-    animation: blink 4s infinite;
+    width: 100%;
+    height: 100%;
 }
 
-.eye.left { left: 35px; }
-.eye.right { right: 35px; }
-
-/* Eye reflections */
-.eye::before {
-    content: "";
+/* ===== EYES ===== */
+.eye {
     position: absolute;
-    width: 9px;
-    height: 9px;
+    width: 42px;
+    height: 42px;
     background: white;
     border-radius: 50%;
-    top: 5px;
-    left: 6px;
-    opacity: 0.9;
+    top: 75px;
 }
 
+.left-eye { left: 55px; }
+.right-eye { right: 55px; }
+
+/* pupil */
 .eye::after {
     content: "";
     position: absolute;
-    width: 5px;
-    height: 5px;
+    width: 20px;
+    height: 20px;
+    background: black;
+    border-radius: 50%;
+    top: 12px;
+    left: 11px;
+}
+
+/* watery shine */
+.eye::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
     background: white;
     border-radius: 50%;
-    top: 14px;
-    left: 12px;
-    opacity: 0.7;
-}
-
-/* ================= EYELASHES ================= */
-.eye span {
-    position: absolute;
-    width: 12px;
-    height: 2px;
-    background: #001b44;
-    top: -6px;
-}
-
-.eye.left span:nth-child(1) {
-    left: -4px;
-    transform: rotate(-30deg);
-}
-
-.eye.left span:nth-child(2) {
+    top: 6px;
     left: 8px;
 }
 
-.eye.left span:nth-child(3) {
-    left: 20px;
-    transform: rotate(30deg);
+/* blinking */
+.eye {
+    animation: blink 6s infinite;
 }
 
-.eye.right span:nth-child(1) {
-    right: -4px;
-    transform: rotate(30deg);
-}
-
-.eye.right span:nth-child(2) {
-    right: 8px;
-}
-
-.eye.right span:nth-child(3) {
-    right: 20px;
-    transform: rotate(-30deg);
-}
-
-/* ================= BLINK ANIMATION ================= */
 @keyframes blink {
-    0%, 92%, 100% { height: 30px; }
-    95% { height: 3px; }
+    0%,95%,100% { transform: scaleY(1); }
+    97% { transform: scaleY(0.1); }
 }
 
-/* ================= MOUTH ================= */
+/* ===== EYELASHES ===== */
+.eye span {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background: white;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.eye span:nth-child(2) {
+    transform: translateX(-50%) rotate(-20deg);
+    left: 40%;
+}
+
+.eye span:nth-child(3) {
+    transform: translateX(-50%) rotate(20deg);
+    left: 60%;
+}
+
+/* ===== MOUTH ===== */
 .mouth {
+    position: absolute;
     width: 40px;
     height: 20px;
-    border-bottom: 3px solid #001b44;
+    border-bottom: 3px solid white;
     border-radius: 0 0 40px 40px;
-    position: absolute;
-    bottom: 45px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 /* ================= TEXT ================= */
 h1 {
-    font-size: 42px;
-    margin: 10px 0 5px;
+    margin-top: 20px;
+    font-size: 36px;
 }
 
 p {
     opacity: 0.85;
-    margin-bottom: 25px;
+    margin: 10px 0 20px;
 }
 
 /* ================= BUTTON ================= */
 button {
-    background: white;
-    color: #0a0f2c;
-    border: none;
     padding: 12px 28px;
-    border-radius: 30px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #111;
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
@@ -211,5 +239,5 @@ button {
 
 button:hover {
     transform: scale(1.05);
-    background: #dbeafe;
+    background: #ddd;
 }
