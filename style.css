@@ -1,131 +1,174 @@
 /* RESET */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-  height:100vh;
-  overflow:hidden;
-  font-family:Arial, sans-serif;
-  color:white;
-  text-align:center;
-  position:relative;
+/* BODY + GALAXY BACKGROUND */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
 
-/* GALAXY NEBULA */
-  background:
-    radial-gradient(circle at 20% 30%, rgba(80,120,255,0.6), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(150,80,255,0.6), transparent 40%),
-    radial-gradient(circle at center, #020617, #000814);
+    /* Nebula gradient */
+    background:
+        radial-gradient(circle at 20% 20%, #2a2aff44, transparent 40%),
+        radial-gradient(circle at 80% 70%, #7b2aff44, transparent 40%),
+        radial-gradient(circle at 60% 30%, #00aaff33, transparent 45%),
+        linear-gradient(180deg, #020617, #020617 60%, #0b1f6b);
 }
 
-/* ================= SMALL MOVING STARS ================= */
-body::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  opacity:0.9;
-
-  background:
-    radial-gradient(2px 2px at 10% 20%, white, transparent),
-    radial-gradient(2px 2px at 30% 40%, white, transparent),
-    radial-gradient(2px 2px at 50% 60%, white, transparent),
-    radial-gradient(2px 2px at 70% 80%, white, transparent),
-    radial-gradient(2px 2px at 80% 30%, white, transparent),
-    radial-gradient(2px 2px at 20% 70%, white, transparent),
-    radial-gradient(2px 2px at 60% 10%, white, transparent),
-    radial-gradient(2px 2px at 90% 50%, white, transparent);
-
-  animation: moveStars 100s linear infinite;
+/* Twinkling star layer */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(1.5px 1.5px at 40% 70%, white, transparent),
+        radial-gradient(2px 2px at 80% 20%, white, transparent),
+        radial-gradient(1px 1px at 60% 40%, white, transparent),
+        radial-gradient(1.5px 1.5px at 10% 80%, white, transparent),
+        radial-gradient(2px 2px at 75% 75%, white, transparent),
+        radial-gradient(1.5px 1.5px at 30% 50%, white, transparent);
+    animation: twinkle 4s infinite alternate;
+    pointer-events: none;
 }
 
-/* ================= BIG SHINY STARS ================= */
-body::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-
-  background:
-    radial-gradient(circle, white 8px, transparent 12px) 15% 20%,
-    radial-gradient(circle, white 9px, transparent 14px) 70% 25%,
-    radial-gradient(circle, white 8px, transparent 12px) 40% 50%,
-    radial-gradient(circle, white 10px, transparent 16px) 85% 70%,
-    radial-gradient(circle, white 9px, transparent 14px) 60% 85%,
-    radial-gradient(circle, white 8px, transparent 12px) 30% 75%;
-
-  background-repeat:no-repeat;
-
-  animation: twinkle 2s infinite alternate;
+/* Big glowing stars */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(6px 6px at 25% 20%, white, transparent),
+        radial-gradient(5px 5px at 75% 35%, white, transparent),
+        radial-gradient(7px 7px at 60% 80%, white, transparent),
+        radial-gradient(6px 6px at 15% 60%, white, transparent);
+    animation: bigStars 6s infinite alternate;
+    pointer-events: none;
 }
 
-/* Star movement */
-@keyframes moveStars{
-  from{transform:translate(0,0);}
-  to{transform:translate(-400px,-400px);}
+/* Star animations */
+@keyframes twinkle {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
 }
 
-/* Star shining */
-@keyframes twinkle{
-  from{opacity:0.6;}
-  to{opacity:1;}
+@keyframes bigStars {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
 }
 
-/* ================= CONTENT ================= */
-.container{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
+/* CENTER CONTENT */
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* ================= GENIE ORB ================= */
-.orb{
-  position:relative;
-  width:220px;
-  height:220px;
-  border-radius:50%;
+/* ORB */
+.orb {
+    position: relative;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    margin-bottom: 25px;
 
-  background:
-    radial-gradient(circle at 30% 30%, #93c5fd, #2563eb 60%, #1e3a8a);
+    background: radial-gradient(circle at 30% 30%,
+        #a7e0ff,
+        #3d7eff,
+        #0b2a8f
+    );
 
-  box-shadow:
-    0 0 40px rgba(59,130,246,0.9),
-    0 0 90px rgba(59,130,246,0.6);
-
-  animation: floatOrb 4s ease-in-out infinite;
+    box-shadow: 0 0 100px #3d7eff;
 }
 
-@keyframes floatOrb{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-12px);}
+/* EYES */
+.eye {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: #0a0a23;
+    border-radius: 50%;
+    top: 90px;
 }
 
-/* ================= TEXT ================= */
-h1{
-  margin-top:20px;
-  font-size:36px;
+/* eye positions */
+.eye.left { left: 55px; }
+.eye.right { right: 55px; }
+
+/* shine in eyes */
+.shine {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 7px;
+    left: 8px;
 }
 
-p{
-  opacity:0.85;
-  margin:10px 0 20px;
+/* Eyelashes */
+.eye::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    border-top: 2px solid #0a0a23;
+    border-radius: 50%;
+    top: -8px;
+    left: 12px;
+}
+
+/* BLINK animation */
+@keyframes blink {
+    0%, 95%, 100% { transform: scaleY(1); }
+    97% { transform: scaleY(0.1); }
+}
+
+.eye {
+    animation: blink 6s infinite;
+}
+
+/* SMILE */
+.mouth {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    border-bottom: 3px solid #0a0a23;
+    border-radius: 0 0 60px 60px;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* TEXT */
+h1 {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+p {
+    opacity: 0.9;
+    margin-bottom: 20px;
 }
 
 /* BUTTON */
-button{
-  padding:12px 28px;
-  border:none;
-  border-radius:25px;
-  background:white;
-  color:#111;
-  font-size:16px;
-  cursor:pointer;
+button {
+    padding: 12px 28px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    background: white;
+    transition: 0.3s;
 }
 
-button:hover{
-  transform:scale(1.05);
+button:hover {
+    background: #dbeafe;
 }
