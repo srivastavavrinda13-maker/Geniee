@@ -81,3 +81,41 @@ button {
     font-size: 28px;
     font-weight: bold;
 }
+/* Menu button */
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 26px;
+    cursor: pointer;
+    color: white;
+    z-index: 1000;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(10, 20, 60, 0.95);
+    padding-top: 80px;
+    transition: 0.3s;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* open sidebar */
+.sidebar.open {
+    left: 0;
+}
