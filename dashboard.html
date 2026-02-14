@@ -60,9 +60,34 @@
     <!-- Focus panel -->
     <div class="focus-panel">
 
-        <div class="timer-circle">
-            25:00
-        </div>
+        <div class="timer-container">
+
+    <svg width="160" height="160">
+        <circle
+            cx="80"
+            cy="80"
+            r="70"
+            stroke="#ffffff33"
+            stroke-width="8"
+            fill="none"
+        ></circle>
+
+        <circle
+            id="progressCircle"
+            cx="80"
+            cy="80"
+            r="70"
+            stroke="white"
+            stroke-width="8"
+            fill="none"
+            stroke-linecap="round"
+            transform="rotate(-90 80 80)"
+        ></circle>
+    </svg>
+
+    <div id="timerText">25:00</div>
+
+</div>
 
         <div>
             <h3>Focus Mode</h3>
@@ -73,6 +98,7 @@
     </div>
 
 </div>
+    <script src="scripts/timer.js"></script>
 
 </body>
 </html>
