@@ -1,174 +1,134 @@
-/* RESET */
-* {
+/* ===== Page Reset ===== */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* BODY + GALAXY BACKGROUND */
-body {
-    font-family: Arial, Helvetica, sans-serif;
     height: 100vh;
     overflow: hidden;
+    font-family: Arial, sans-serif;
     color: white;
+    text-align: center;
 
-    /* Nebula gradient */
-    background:
-        radial-gradient(circle at 20% 20%, #2a2aff44, transparent 40%),
-        radial-gradient(circle at 80% 70%, #7b2aff44, transparent 40%),
-        radial-gradient(circle at 60% 30%, #00aaff33, transparent 45%),
-        linear-gradient(180deg, #020617, #020617 60%, #0b1f6b);
+    /* Dark blue galaxy gradient */
+    background: radial-gradient(circle at 30% 30%,
+        #163a7a,
+        #020617 80%);
 }
 
-/* Twinkling star layer */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(2px 2px at 20% 30%, white, transparent),
-        radial-gradient(1.5px 1.5px at 40% 70%, white, transparent),
-        radial-gradient(2px 2px at 80% 20%, white, transparent),
-        radial-gradient(1px 1px at 60% 40%, white, transparent),
-        radial-gradient(1.5px 1.5px at 10% 80%, white, transparent),
-        radial-gradient(2px 2px at 75% 75%, white, transparent),
-        radial-gradient(1.5px 1.5px at 30% 50%, white, transparent);
-    animation: twinkle 4s infinite alternate;
-    pointer-events: none;
-}
-
-/* Big glowing stars */
+/* ===== Star Galaxy Layer ===== */
 body::after {
     content: "";
     position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(6px 6px at 25% 20%, white, transparent),
-        radial-gradient(5px 5px at 75% 35%, white, transparent),
-        radial-gradient(7px 7px at 60% 80%, white, transparent),
-        radial-gradient(6px 6px at 15% 60%, white, transparent);
-    animation: bigStars 6s infinite alternate;
+    width: 100%;
+    height: 100%;
+
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#8ab4ff 1px, transparent 1px),
+        radial-gradient(white 2px, transparent 2px);
+
+    background-size: 80px 80px, 120px 120px, 200px 200px;
+    background-position: 0 0, 40px 60px, 100px 100px;
+
+    opacity: 0.25;
+    animation: twinkle 8s infinite alternate;
     pointer-events: none;
 }
 
-/* Star animations */
 @keyframes twinkle {
-    from { opacity: 0.4; }
-    to { opacity: 1; }
+    from {opacity: 0.15;}
+    to {opacity: 0.4;}
 }
 
-@keyframes bigStars {
-    from { opacity: 0.5; }
-    to { opacity: 1; }
-}
-
-/* CENTER CONTENT */
+/* ===== Main Container ===== */
 .container {
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
-/* ORB */
+/* ===== Genie Orb ===== */
 .orb {
-    position: relative;
-    width: 230px;
-    height: 230px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-    margin-bottom: 25px;
 
     background: radial-gradient(circle at 30% 30%,
-        #a7e0ff,
-        #3d7eff,
-        #0b2a8f
-    );
+        #9fdfff,
+        #2563eb 60%,
+        #020617);
 
-    box-shadow: 0 0 100px #3d7eff;
+    box-shadow:
+        0 0 40px #3b82f6,
+        0 0 80px #2563eb,
+        inset -10px -10px 30px rgba(0,0,0,0.5);
+
+    position: relative;
+    margin-bottom: 20px;
 }
 
-/* EYES */
+/* ===== Eyes ===== */
 .eye {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    background: #0a0a23;
+    width: 14px;
+    height: 14px;
+    background: #001b44;
     border-radius: 50%;
-    top: 90px;
+    position: absolute;
+    top: 40%;
+    animation: blink 4s infinite;
 }
 
-/* eye positions */
-.eye.left { left: 55px; }
-.eye.right { right: 55px; }
-
-/* shine in eyes */
-.shine {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background: white;
-    border-radius: 50%;
-    top: 7px;
-    left: 8px;
+.eye.left {
+    left: 50px;
 }
 
-/* Eyelashes */
-.eye::before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 10px;
-    border-top: 2px solid #0a0a23;
-    border-radius: 50%;
-    top: -8px;
-    left: 12px;
+.eye.right {
+    right: 50px;
 }
 
-/* BLINK animation */
+/* Blink Animation */
 @keyframes blink {
-    0%, 95%, 100% { transform: scaleY(1); }
-    97% { transform: scaleY(0.1); }
+    0%, 92%, 100% { height: 14px; }
+    95% { height: 2px; }
 }
 
-.eye {
-    animation: blink 6s infinite;
-}
-
-/* SMILE */
+/* ===== Mouth ===== */
 .mouth {
+    width: 40px;
+    height: 20px;
+    border-bottom: 3px solid #001b44;
+    border-radius: 0 0 40px 40px;
     position: absolute;
-    width: 60px;
-    height: 30px;
-    border-bottom: 3px solid #0a0a23;
-    border-radius: 0 0 60px 60px;
-    bottom: 60px;
+    bottom: 45px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* TEXT */
+/* ===== Title Text ===== */
 h1 {
-    font-size: 36px;
-    margin-bottom: 8px;
+    font-size: 42px;
+    margin: 10px 0 5px;
 }
 
 p {
-    opacity: 0.9;
-    margin-bottom: 20px;
+    opacity: 0.85;
+    margin-bottom: 25px;
 }
 
-/* BUTTON */
+/* ===== Button ===== */
 button {
-    padding: 12px 28px;
-    border-radius: 25px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
     background: white;
+    color: #0a0f2c;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
     transition: 0.3s;
 }
 
 button:hover {
+    transform: scale(1.05);
     background: #dbeafe;
 }
