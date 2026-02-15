@@ -35,9 +35,10 @@
 
     <!-- Greeting -->
     <h2>Good Morning, Vrinda</h2>
-    <p class="study-summary">
-        You studied 3h today. Great work!
-    </p>
+
+<p id="studyStats" class="study-summary">
+    Loading study stats...
+</p>
 
     <!-- Target -->
     <div class="card">
@@ -119,6 +120,15 @@ function toggleMenu() {
     document.getElementById("sidebar")
         .classList.toggle("open");
 }
+</script>
+    <script>
+function loadStats() {
+    let total = getTotalStudyTime();
+    document.getElementById("studyStats")
+        .innerText = "Total focus time: " + total + " minutes";
+}
+
+loadStats();
 </script>
 
 </body>
