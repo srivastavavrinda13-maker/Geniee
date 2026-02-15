@@ -43,6 +43,10 @@
         <h3>Savings Status</h3>
         <p id="savingsText">Savings: ₹0</p>
     </div>
+    <div class="card">
+    <h3>Monthly Savings</h3>
+    <canvas id="moneyChart"></canvas>
+</div>
 
 </div>
 
@@ -58,10 +62,20 @@ function saveLimit() {
 function addExpense() {
     const spend = Number(document.getElementById("spend").value);
     const limit = Number(localStorage.getItem("dailyLimit")) || 0;
+    const category = document.getElementById("category").value;
 
     savings += limit - spend;
 
+    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    expenses.push({ amount: spend, category: category });
+
+    localStorage.setItem("expenses", JSON.stringify(expenses));
     localStorage.setItem("savings", savings);
+
+    if (spend > limit) {
+        alert("⚠ You exceeded today's budget!");
+    }
+
     updateSavings();
 }
 
@@ -71,6 +85,23 @@ function updateSavings() {
 }
 
 updateSavings();
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctxMoney = document.getElementById('moneyChart');
+
+new Chart(ctxMoney, {
+    type: 'bar',
+    data: {
+        labels: ['Week1','Week2','Week3','Week4'],
+        datasets: [{
+            label: 'Savings ₹',
+            data: [500, 800, 650, 900],
+            backgroundColor: '#66ccff'
+        }]
+    }
+});
 </script>
 
 </body>
