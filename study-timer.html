@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Study Timer - Geniee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <div class="menu-btn" onclick="location.href='dashboard.html'">
+        ←
+    </div>
+
+    <h2>⚙ Customize Study Session</h2>
+
+    <div class="card">
+        <h3>Study Duration (minutes)</h3>
+        <input type="number" id="studyTime" value="25">
+    </div>
+
+    <div class="card">
+        <h3>Break Duration (minutes)</h3>
+        <input type="number" id="breakTime" value="5">
+    </div>
+
+    <div class="card">
+        <h3>Number of Sessions</h3>
+        <input type="number" id="sessions" value="4">
+    </div>
+
+    <div class="card">
+        <h3>Focus Music</h3>
+        <select id="music">
+            <option value="none">None</option>
+            <option value="lofi">Lo-fi Beats</option>
+            <option value="rain">Rain Sounds</option>
+            <option value="nature">Nature</option>
+        </select>
+    </div>
+
+    <button onclick="saveSettings()">Start Study</button>
+
+</div>
+
+<script>
+function saveSettings() {
+
+    let settings = {
+        study: document.getElementById("studyTime").value,
+        break: document.getElementById("breakTime").value,
+        sessions: document.getElementById("sessions").value,
+        music: document.getElementById("music").value
+    };
+
+    localStorage.setItem("timerSettings",
+        JSON.stringify(settings));
+
+    location.href = "dashboard.html";
+}
+</script>
+
+</body>
+</html>
