@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doubt Solver - Geniee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<div class="menu-btn" onclick="location.href='dashboard.html'">
+←
+</div>
+
+<h2>❓ Doubt Solver</h2>
+
+<div class="card">
+    <textarea id="doubt"
+        placeholder="Type your doubt here..."
+        rows="4"
+        style="width:100%"></textarea>
+
+    <button onclick="saveDoubt()">Submit Doubt</button>
+</div>
+
+<div class="card">
+    <h3>Previous Doubts</h3>
+    <ul id="doubtList"></ul>
+</div>
+
+</div>
+
+<script>
+function saveDoubt(){
+    let doubt =
+        document.getElementById("doubt").value;
+
+    let doubts =
+        JSON.parse(localStorage.getItem("doubts")) || [];
+
+    doubts.push(doubt);
+
+    localStorage.setItem(
+        "doubts",
+        JSON.stringify(doubts)
+    );
+
+    document.getElementById("doubt").value = "";
+
+    loadDoubts();
+}
+
+function loadDoubts(){
+    let doubts =
+        JSON.parse(localStorage.getItem("doubts")) || [];
+
+    let list =
+        document.getElementById("doubtList");
+
+    list.innerHTML = "";
+
+    doubts.forEach(d => {
+        let li = document.createElement("li");
+        li.textContent = d;
+        list.appendChild(li);
+    });
+}
+
+loadDoubts();
+</script>
+
+</body>
+</html>
