@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Money Tracker - Geniee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Back -->
+    <div class="menu-btn" onclick="location.href='dashboard.html'">
+        ←
+    </div>
+
+    <h2>💰 Money Tracker</h2>
+
+    <div class="card">
+        <h3>Daily Limit</h3>
+        <input type="number" id="limit" placeholder="Enter daily limit">
+        <button onclick="saveLimit()">Save Limit</button>
+    </div>
+
+    <div class="card">
+        <h3>Today's Spending</h3>
+        <input type="number" id="spend" placeholder="Amount spent">
+        <button onclick="addExpense()">Add Expense</button>
+    </div>
+
+    <div class="card">
+        <h3>Savings Status</h3>
+        <p id="savingsText">Savings: ₹0</p>
+    </div>
+
+</div>
+
+<script>
+let savings = Number(localStorage.getItem("savings")) || 0;
+
+function saveLimit() {
+    const limit = document.getElementById("limit").value;
+    localStorage.setItem("dailyLimit", limit);
+    alert("Daily limit saved!");
+}
+
+function addExpense() {
+    const spend = Number(document.getElementById("spend").value);
+    const limit = Number(localStorage.getItem("dailyLimit")) || 0;
+
+    savings += limit - spend;
+
+    localStorage.setItem("savings", savings);
+    updateSavings();
+}
+
+function updateSavings() {
+    document.getElementById("savingsText")
+        .innerText = "Savings: ₹" + savings;
+}
+
+updateSavings();
+</script>
+
+</body>
+</html>
