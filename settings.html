@@ -57,7 +57,9 @@
 
 <div class="setting-row">Profile <span>></span></div>
 <div class="setting-row">Change Password <span>></span></div>
-<div class="setting-row">Logout <span>></span></div>
+<div class="setting-row" onclick="logout()">
+Logout <span>></span>
+</div>
 <div class="setting-row">Delete Account <span>></span></div>
 </div>
 
@@ -113,12 +115,32 @@ Animations
 <div class="settings-group">
 <h3>Data</h3>
 
-<div class="setting-row">Reset Study Data <span>></span></div>
-<div class="setting-row">Reset Money Data <span>></span></div>
-
+<div class="setting-row" onclick="resetStudy()">
+Reset Study Data <span>></span>
+</div>
+<div class="setting-row" onclick="resetMoney()">
+Reset Money Data <span>></span>
 </div>
 
 </div>
+
+</div><script>
+function logout(){
+    alert("Logged out!");
+    location.href = "login.html";
+}
+
+function resetStudy(){
+    localStorage.removeItem("sessions");
+    alert("Study data cleared!");
+}
+
+function resetMoney(){
+    localStorage.removeItem("savings");
+    localStorage.removeItem("expenses");
+    alert("Money data cleared!");
+}
+</script>
 
 </body>
 </html>
