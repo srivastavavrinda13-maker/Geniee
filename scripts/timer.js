@@ -22,6 +22,7 @@ function updateTimer() {
     if (timeLeft <= 0) {
         clearInterval(interval);
         timerRunning = false;
+        saveSession(25);
     }
 
     timeLeft--;
