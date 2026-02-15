@@ -1,84 +1,124 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Settings - Geniee</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="dashboard.css">
+<title>Settings - Geniee</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dashboard.css">
+
+<style>
+.settings-group {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.settings-group h3 {
+    margin: 10px 0;
+    opacity: 0.7;
+}
+
+.setting-row {
+    background: rgba(255,255,255,0.05);
+    padding: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+
+.setting-row:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.setting-row span {
+    float: right;
+    opacity: 0.6;
+}
+
+.toggle {
+    float: right;
+}
+</style>
+
 </head>
 
 <body>
 
 <div class="dashboard">
 
-<h2>Settings</h2>
-
-<!-- Account -->
-<div class="card">
-<h3 onclick="toggleSection('accountOptions')">
-Account ⚙
-</h3>
-
-<div id="accountOptions" style="display:none;">
-<button>Change Name</button>
-<button>Change Password</button>
-<button>Logout</button>
-<button>Delete Account</button>
-</div>
+<div class="menu-btn" onclick="location.href='dashboard.html'">
+←
 </div>
 
-<!-- Study Timer -->
-<div class="card">
-<h3 onclick="toggleSection('timerOptions')">
-Study Timer ⏱
-</h3>
+<h2>⚙ Settings</h2>
 
-<div id="timerOptions" style="display:none;">
-<label>Session Duration</label>
-<input type="number" value="25">
+<!-- ACCOUNT -->
+<div class="settings-group">
+<h3>Account</h3>
 
-<label>Break Duration</label>
-<input type="number" value="5">
-</div>
+<div class="setting-row">Profile <span>></span></div>
+<div class="setting-row">Change Password <span>></span></div>
+<div class="setting-row">Logout <span>></span></div>
+<div class="setting-row">Delete Account <span>></span></div>
 </div>
 
-<!-- Notifications -->
-<div class="card">
-<h3 onclick="toggleSection('notificationOptions')">
-Notifications 🔔
-</h3>
+<!-- STUDY -->
+<div class="settings-group">
+<h3>Study Timer</h3>
 
-<div id="notificationOptions" style="display:none;">
-<label>
-<input type="checkbox" checked>
+<div class="setting-row">Session Duration <span>25 min ></span></div>
+<div class="setting-row">Break Duration <span>5 min ></span></div>
+
+<div class="setting-row">
+Auto Start Sessions
+<input type="checkbox" class="toggle" checked>
+</div>
+
+<div class="setting-row">
+Auto Break
+<input type="checkbox" class="toggle" checked>
+</div>
+
+</div>
+
+<!-- NOTIFICATIONS -->
+<div class="settings-group">
+<h3>Notifications</h3>
+
+<div class="setting-row">
 Study Reminders
-</label>
-</div>
+<input type="checkbox" class="toggle" checked>
 </div>
 
-<!-- Appearance -->
-<div class="card">
-<h3 onclick="toggleSection('appearanceOptions')">
-Appearance 🎨
-</h3>
-
-<div id="appearanceOptions" style="display:none;">
-<button>Dark Mode</button>
-<button>Light Mode</button>
-</div>
+<div class="setting-row">
+Deadline Alerts
+<input type="checkbox" class="toggle" checked>
 </div>
 
 </div>
 
-<script>
-function toggleSection(id){
-    let section = document.getElementById(id);
+<!-- APPEARANCE -->
+<div class="settings-group">
+<h3>Appearance</h3>
 
-    if(section.style.display === "none")
-        section.style.display = "block";
-    else
-        section.style.display = "none";
-}
-</script>
+<div class="setting-row">Theme <span>Dark ></span></div>
+
+<div class="setting-row">
+Animations
+<input type="checkbox" class="toggle" checked>
+</div>
+
+</div>
+
+<!-- DATA -->
+<div class="settings-group">
+<h3>Data</h3>
+
+<div class="setting-row">Reset Study Data <span>></span></div>
+<div class="setting-row">Reset Money Data <span>></span></div>
+
+</div>
+
+</div>
 
 </body>
 </html>
