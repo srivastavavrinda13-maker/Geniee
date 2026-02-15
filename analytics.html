@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -44,14 +45,51 @@
         </div>
 
     </div>
+    <div class="card">
+    <h3>Study Streak Heatmap</h3>
+    <div class="heatmap">
+        <div class="day low"></div>
+        <div class="day medium"></div>
+        <div class="day high"></div>
+        <div class="day high"></div>
+        <div class="day none"></div>
+        <div class="day medium"></div>
+        <div class="day high"></div>
+    </div>
+</div>
 
     <!-- Placeholder Graph -->
     <div class="card">
-        <h3>Study Time Graph</h3>
-        <p>📈 Graph will appear here</p>
-    </div>
+    <h3>Study Time Graph</h3>
+    <canvas id="studyChart"></canvas>
+</div>
 
 </div>
+    <script>
+const ctx = document.getElementById('studyChart');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+        datasets: [{
+            label: 'Study Hours',
+            data: [2,3,1.5,4,3,5,2],
+            borderColor: '#66ccff',
+            backgroundColor: 'rgba(100,180,255,0.2)',
+            tension: 0.4,
+            fill: true
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
 
 </body>
 </html>
