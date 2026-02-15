@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotional Support - Geniee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- Back button -->
+<div class="menu-btn"
+     onclick="location.href='dashboard.html'">
+←
+</div>
+
+<h2>💙 Talk to Geniee</h2>
+
+<div class="card">
+    <input id="mood"
+        placeholder="How are you feeling?"
+        style="width:100%; padding:10px;">
+        
+    <button onclick="respond()">
+        Talk
+    </button>
+</div>
+
+<div class="card">
+    <p id="response"></p>
+</div>
+
+</div>
+
+<script>
+function respond(){
+    let mood =
+        document.getElementById("mood").value.toLowerCase();
+
+    let reply = "I'm here with you.";
+
+    if(mood.includes("tired"))
+        reply = "Take a short break. You deserve it.";
+    else if(mood.includes("sad"))
+        reply = "Bad days pass. Keep going.";
+    else if(mood.includes("stress"))
+        reply = "Breathe. One step at a time.";
+    else if(mood.includes("fail"))
+        reply = "Failure teaches success.";
+
+    document.getElementById("response").innerText = reply;
+}
+</script>
+
+</body>
+</html>
