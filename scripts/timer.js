@@ -4,7 +4,12 @@ const timerText = document.getElementById("timerText");
 
 circle.style.strokeDasharray = FULL_DASH;
 
-let totalTime = 25 * 60;
+let settings =
+    JSON.parse(localStorage.getItem("timerSettings")) || {};
+
+let studyMinutes = settings.study || 25;
+
+let totalTime = studyMinutes * 60;
 let timeLeft = totalTime;
 let timerRunning = false;
 let interval;
