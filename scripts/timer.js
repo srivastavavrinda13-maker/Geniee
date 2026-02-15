@@ -38,3 +38,15 @@ function startSession() {
         interval = setInterval(updateTimer, 1000);
     }
 }
+function pauseSession() {
+    clearInterval(interval);
+    timerRunning = false;
+}
+
+function resetSession() {
+    clearInterval(interval);
+    timerRunning = false;
+
+    timeLeft = totalTime;
+    updateTimer();
+}
